@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+            text-align: left;
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .form-footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+     </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Music Recommendation System</h1>
+        <form action="{{ url_for('recommend') }}" method="POST">
+            <div>
+                <label for="mood">Select Mood:</label>
+                <select name="mood" id="mood">
+                    {% for mood in moods %}
+                        <option value="{{ mood }}">{{ mood }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div>
+                <label for="activity">Select Activity:</label>
+                <select name="activity" id="activity">
+                    {% for activity in activities %}
+                        <option value="{{ activity }}">{{ activity }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit">submit</button>
+        </form>
+
+        <div class="form-footer">
+            <p>Feel free to select your mood and activity for personalized song recommendations.</p>
+        </div>
+    </div>
+</body>
+</html>
